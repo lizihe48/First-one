@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int main1() {
     int birthYear, birthMonth, birthDay;
     int currentYear = 2025, currentMonth = 3, currentDay = 7;
     int age;

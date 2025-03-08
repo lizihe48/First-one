@@ -1,5 +1,5 @@
 #include <stdio.h>
-int main1()
+int main2()
 {
 	int a, b, c, A, B, C, _1, _2, _3;
 	printf("请依次输入出生年月日\n");
