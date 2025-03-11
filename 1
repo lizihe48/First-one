@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>猫和老鼠控制老鼠逃跑</title>
+  <style>
+    #game-container {
+      width: 400px;
+      height: 400px;
+      border: 1px solid black;
+      position: relative;
+    }
+
+    #mouse {
+      width: 50px;
+      height: 50px;
+      background-color: gray;
+      border-radius: 50%;
+      position: absolute;
+      top: 50px;
+      left: 50px;
+    }
+
+    #cat {
+      width: 60px;
+      height: 60px;
+      background-color: yellow;
+      border-radius: 50%;
+      position: absolute;
+      top: 200px;
+      left: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="game-container">
+    <div id="mouse"></div>
+    <div id="cat"></div>
+  </div>
+  <script>
+    const gameContainer = document.getElementById('game-container');
+    const mouse = document.getElementById('mouse');
+    const cat = document.getElementById('cat');
+
+    document.addEventListener('keydown', function (event) {
+      let mouseTop = parseInt(window.getComputedStyle(mouse).top);
+      let mouseLeft = parseInt(window.getComputedStyle(mouse).left);
+
+      switch (event.key) {
+        case 'ArrowUp':
+          mouse.style.top = (mouseTop - 10) + 'px';
+          break;
+        case 'ArrowDown':
+          mouse.style.top = (mouseTop + 10) + 'px';
+          break;
+        case 'ArrowLeft':
+          mouse.style.left = (mouseLeft - 10) + 'px';
+          break;
+        case 'ArrowRight':
+          mouse.style.left = (mouseLeft + 10) + 'px';
+          break;
+      }
+
+      // 简单边界检测，防止老鼠跑出游戏区域
+      if (parseInt(mouse.style.top) < 0) {
+        mouse.style.top = '0px';
+      }
+      if (parseInt(mouse.style.left) < 0) {
+        mouse.style.left = '0px';
+      }
+      if (parseInt(mouse.style.top) + 50 > gameContainer.offsetHeight) {
+        mouse.style.top = (gameContainer.offsetHeight - 50) + 'px';
+      }
+      if (parseInt(mouse.style.left) + 50 > gameContainer.offsetWidth) {
+        mouse.style.left = (gameContainer.offsetWidth - 50) + 'px';
+      }
+    });
+  </script>
+</body>
+
+</html>
